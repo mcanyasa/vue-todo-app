@@ -10,6 +10,7 @@
         v-model="task"
         placeholder="Enter task"
         class="w-100 form-control"
+        ref="taskName"
       />
       <button class="btn btn-warning rounded-0" @click="submitTask">
         SUBMIT
@@ -71,6 +72,7 @@ export default {
   data() {
     return {
       task: "",
+      focused: false,
       editedTask: null,
       statuses: ["to-do", "in-progress", "finished"],
       /* Status could be: 'to-do' / 'in-progress' / 'finished' */
@@ -117,6 +119,7 @@ export default {
     editTask(index) {
       this.task = this.tasks[index].name;
       this.editedTask = index;
+      this.$refs.taskName.focus();
     },
     /**
      * Add / Update task
